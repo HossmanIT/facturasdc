@@ -1,6 +1,6 @@
 # Ruta de los scripts Python
-$transferScript = "C:\Mondayapp\facturasdc\transfer4.py"
-$syncScript = "C:\Mondayapp\facturasdc\sync_script4.py"
+$transferScript = "C:\Mondayapp\facturasdc\transferfdc.py"
+$syncScript = "C:\Mondayapp\facturasdc\sync_scriptfdc.py"
 $logFile = "C:\Logs\facturasdc.log"
 $transferOut = "C:\Logs\transferfdc_salida.log"
 $transferErr = "C:\Logs\transferfdc_error.log"
@@ -21,9 +21,9 @@ function Write-Log {
 # Iniciar registro
 Write-Log "==== Inicio de la ejecucion automatica ===="
 
-# 1. Ejecutar transfer4.py
+# 1. Ejecutar transferfdc.py
 try {
-    Write-Log "Ejecutando transfer4.py..."
+    Write-Log "Ejecutando transferfdc.py..."
     $transferProcess = Start-Process -FilePath $pythonPath `
         -ArgumentList $transferScript `
         -RedirectStandardOutput $transferOut `
@@ -31,23 +31,23 @@ try {
         -Wait -PassThru -NoNewWindow
 
     if ($transferProcess.ExitCode -eq 0) {
-        Write-Log "transfer4.py se ejecuto correctamente (ExitCode: 0)."
+        Write-Log "transferfdc.py se ejecuto correctamente (ExitCode: 0)."
     } else {
-        Write-Log "ERROR: transfer4.py fallo (ExitCode: $($transferProcess.ExitCode))."
+        Write-Log "ERROR: transferfdc.py fallo (ExitCode: $($transferProcess.ExitCode))."
         exit 1
     }
 } catch {
-    Write-Log "ERROR al ejecutar transfer4.py: $_"
+    Write-Log "ERROR al ejecutar transferfdc.py: $_"
     exit 1
 }
 
-# 2. Esperar 60 segundos antes de ejecutar sync_script4.py
-Write-Log "Esperando 60 segundos antes de ejecutar sync_script4.py..."
+# 2. Esperar 60 segundos antes de ejecutar sync_scriptfdc.py
+Write-Log "Esperando 60 segundos antes de ejecutar sync_scriptfdc.py..."
 Start-Sleep -Seconds 60
 
-# 3. Ejecutar sync_script4.py
+# 3. Ejecutar sync_scriptfdc.py
 try {
-    Write-Log "Ejecutando sync_script4.py..."
+    Write-Log "Ejecutando sync_scriptfdc.py..."
     $syncProcess = Start-Process -FilePath $pythonPath `
         -ArgumentList $syncScript `
         -RedirectStandardOutput $syncOut `
@@ -55,13 +55,13 @@ try {
         -Wait -PassThru -NoNewWindow
 
     if ($syncProcess.ExitCode -eq 0) {
-        Write-Log "sync_script4.py se ejecuto correctamente (ExitCode: 0)."
+        Write-Log "sync_scriptfdc.py se ejecuto correctamente (ExitCode: 0)."
     } else {
-        Write-Log "ERROR: sync_script4.py fallo (ExitCode: $($syncProcess.ExitCode))."
+        Write-Log "ERROR: sync_scriptfdc.py fallo (ExitCode: $($syncProcess.ExitCode))."
         exit 1
     }
 } catch {
-    Write-Log "ERROR al ejecutar sync_script4.py: $_"
+    Write-Log "ERROR al ejecutar sync_scriptfdc.py: $_"
     exit 1
 }
 
