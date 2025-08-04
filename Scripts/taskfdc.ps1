@@ -2,10 +2,10 @@
 $transferScript = "C:\Mondayapp\facturasdc\transferfdc.py"
 $syncScript = "C:\Mondayapp\facturasdc\sync_scriptfdc.py"
 $logFile = "C:\Logs\facturasdc.log"
-$transferOut = "C:\Logs\transferfdc_salida.log"
-$transferErr = "C:\Logs\transferfdc_error.log"
-$syncOut = "C:\Logs\syncfdc_salida.log"
-$syncErr = "C:\Logs\syncfdc_error.log"
+$transferOut = "C:\Logs\transfer_salidafdc.log"
+$transferErr = "C:\Logs\transfer_errorfdc.log"
+$syncOut = "C:\Logs\sync_salidafdc.log"
+$syncErr = "C:\Logs\sync_errorfdc.log"
 
 # Ruta completa a python.exe (ajusta si usas entorno virtual)
 $pythonPath = "python.exe"
