@@ -6,7 +6,7 @@ logger = logging.getLogger(__name__)
 
 try:
     response = requests.post(
-        "http://localhost:8003/sync-recent-invoices",
+        "http://localhost:8003/sync-recent-invoicesfdc",
         headers={"Content-Type": "application/json"}
     )
     logger.info(f"Sync executed: {response.json()}")
